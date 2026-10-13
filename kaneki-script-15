@@ -1,0 +1,182 @@
+local _0x={
+[1]=game,[2]="GetService",[3]="Players",[4]="UserInputService",[5]="RunService",
+[6]="LocalPlayer",[7]="CurrentCamera",[8]="Character",[9]="CharacterAdded",[10]="Wait",
+[11]="WaitForChild",[12]="Humanoid",[13]="HumanoidRootPart",[14]="ScreenGui",
+[15]="CustomMobileControls",[16]="PlayerGui",[17]="TextButton",[18]="AutoClicker",
+[19]="JumpButton",[20]="Frame",[21]="JoystickBase",[22]="JoystickKnob",[23]="UICorner",
+[24]="PlayerScripts",[25]="PlayerModule",[26]="GetControls",[27]="Disable",
+[28]="mousemoveabs",[29]="mouse1click",[30]="AssemblyLinearVelocity"
+}
+
+local a=_0x[1][_0x[2]](_0x[1],_0x[3])
+local b=_0x[1][_0x[2]](_0x[1],_0x[4])
+local c=_0x[1][_0x[2]](_0x[1],_0x[5])
+
+local d=a[_0x[6]]
+local e=workspace[_0x[7]]
+local f,g,h
+
+local function i(j)
+	f=j
+	g=j[_0x[11]](j,_0x[12])
+	h=j[_0x[11]](j,_0x[13])
+end
+
+i(d[_0x[8]] or d[_0x[9]][_0x[10]](d[_0x[9]]))
+d[_0x[9]]:Connect(i)
+
+local k=25
+
+local l=Instance.new(_0x[14])
+l.Name=_0x[15]
+l.ResetOnSpawn=false
+l.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+l.Parent=d[_0x[11]](d,_0x[16])
+
+local m=Instance.new(_0x[17])
+m.Name=_0x[18]
+m.Size=UDim2.new(0,70,0,70)
+m.Position=UDim2.new(0.80,0,0.48,0)
+m.BackgroundColor3=Color3.fromRGB(40,40,40)
+m.BackgroundTransparency=0.15
+m.Text="🖱️"
+m.TextSize=34
+m.Font=Enum.Font.GothamBold
+m.TextColor3=Color3.new(1,1,1)
+m.AutoButtonColor=false
+m.Parent=l
+Instance.new(_0x[23],m).CornerRadius=UDim.new(1,0)
+
+local n=Instance.new(_0x[17])
+n.Name=_0x[19]
+n.Size=UDim2.new(0,75,0,75)
+n.Position=UDim2.new(0.80,0,0.68,0)
+n.BackgroundColor3=Color3.fromRGB(40,40,40)
+n.BackgroundTransparency=0.15
+n.Text="🦘"
+n.TextSize=34
+n.Font=Enum.Font.GothamBold
+n.TextColor3=Color3.new(1,1,1)
+n.AutoButtonColor=false
+n.Parent=l
+Instance.new(_0x[23],n).CornerRadius=UDim.new(1,0)
+
+local o=Instance.new(_0x[20])
+o.Name=_0x[21]
+o.Size=UDim2.new(0,140,0,140)
+o.Position=UDim2.new(0.06,0,0.52,0)
+o.BackgroundColor3=Color3.fromRGB(0,0,0)
+o.BackgroundTransparency=0.45
+o.Parent=l
+Instance.new(_0x[23],o).CornerRadius=UDim.new(1,0)
+
+local p=Instance.new(_0x[20])
+p.Name=_0x[22]
+p.Size=UDim2.new(0,58,0,58)
+p.Position=UDim2.new(0.5,-29,0.5,-29)
+p.BackgroundColor3=Color3.fromRGB(255,255,255)
+p.Parent=o
+Instance.new(_0x[23],p).CornerRadius=UDim.new(1,0)
+
+local q,r,s,t=false,nil,nil,false
+local u,v=nil,false
+local w=Vector2.zero
+local x=41
+
+local function y()
+	pcall(function()
+		local z=require(d[_0x[24]]:WaitForChild(_0x[25]))
+		z[_0x[26]](z)[_0x[27]](z[_0x[26]](z))
+	end)
+end
+
+y()
+d[_0x[9]]:Connect(y)
+
+task.spawn(function()
+	while true do
+		if q then
+			local A=e.ViewportSize
+			local B,C=A.X/2,A.Y/2
+			pcall(function()
+				_0x[28](B,C)
+				for _=1,15 do _0x[29]() end
+			end)
+			task.wait()
+		else
+			task.wait(0.05)
+		end
+	end
+end)
+
+m.InputBegan:Connect(function(D)
+	if (D.UserInputType==Enum.UserInputType.Touch or D.UserInputType==Enum.UserInputType.MouseButton1) and not r then
+		r=D
+		s=D.Position
+		t=false
+	end
+end)
+
+n.InputBegan:Connect(function(D)
+	if D.UserInputType==Enum.UserInputType.Touch or D.UserInputType==Enum.UserInputType.MouseButton1 then
+		if g then g.Jump=true end
+	end
+end)
+
+p.InputBegan:Connect(function(D)
+	if (D.UserInputType==Enum.UserInputType.Touch or D.UserInputType==Enum.UserInputType.MouseButton1) and not u then
+		u=D
+		v=true
+	end
+end)
+
+b.InputChanged:Connect(function(D)
+	if D==r then
+		if (D.Position-s).Magnitude>=12 then
+			t=true
+			m.Position=UDim2.new(0,D.Position.X-35,0,D.Position.Y-35)
+		end
+	elseif D==u then
+		local E=o.AbsolutePosition+o.AbsoluteSize/2
+		local F=Vector2.new(D.Position.X-E.X,D.Position.Y-E.Y)
+		if F.Magnitude>x then F=F.Unit*x end
+		w=F
+	end
+end)
+
+b.InputEnded:Connect(function(D)
+	if D==r then
+		if not t then
+			q=not q
+			m.BackgroundColor3=q and Color3.fromRGB(0,200,0) or Color3.fromRGB(40,40,40)
+		end
+		r=nil
+		t=false
+	elseif D==u then
+		u=nil
+		v=false
+		w=Vector2.zero
+	end
+end)
+
+c.Heartbeat:Connect(function()
+	local G=Vector2.new(p.Position.X.Offset,p.Position.Y.Offset)
+	local H=Vector2.new(w.X-29,w.Y-29)
+	local I=G:Lerp(H,0.3)
+	p.Position=UDim2.new(0.5,I.X,0.5,I.Y)
+
+	if v and h and g and g.Health>0 then
+		local J=w.X/x
+		local K=w.Y/x
+		local L=e.CFrame.LookVector
+		local M=e.CFrame.RightVector
+		local N=Vector3.new(L.X,0,L.Z)
+		local O=Vector3.new(M.X,0,M.Z)
+		if N.Magnitude>0.01 then N=N.Unit end
+		if O.Magnitude>0.01 then O=O.Unit end
+		local P=(N*-K+O*J)*k
+		h[_0x[30]]=Vector3.new(P.X,h[_0x[30]].Y,P.Z)
+	elseif h then
+		h[_0x[30]]=Vector3.new(0,h[_0x[30]].Y,0)
+	end
+end)
